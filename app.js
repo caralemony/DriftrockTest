@@ -18,9 +18,22 @@ const APICall = (option, callback, page, results) => {
     });
 };
 
-const mostSold = result => {
-  result.forEach(a => console.log(a.length));
-  // result.forEach(data => console.log(data.item));
+const mostSold = allSales => {
+  let mergedArr = [].concat.apply([], allSales);
+  let soldItems = [];
+  let salesTally = {};
+  mergedArr.forEach(sold => {
+    soldItems.push(sold.item);
+  });
+
+  for (var i = 0; i < soldItems.length; i++) {
+    if (typeof salesTally[soldItems[i]] == "undefined") {
+      salesTally[soldItems[i]] = 1;
+    } else {
+      salesTally[soldItems[i]]++;
+    }
+    console.log(salesTally);
+  }
 };
 
 const userTotal = result => {
@@ -32,5 +45,6 @@ const userTotal = result => {
   });
 };
 
-process.argv[2] === "most_sold" ? APICall("purchases", mostSold, 1, []) : "";
-process.argv[2] === "total_spend" ? APICall("users", userTotal) : "";
+process.argv[2] === "most_sold"
+  ? APICall("purchases", mostSold, 1, [])
+  : process.argv[2] === "total_spend" ? APICall("users", userTotal) : "";
