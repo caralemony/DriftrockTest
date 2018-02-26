@@ -1,28 +1,26 @@
 const fetch = require("node-fetch");
 
-const APICall = (arg, callback) => {
-  let page = 1;
-  let results = "";
+const APICall = (option, callback, page, results) => {
   fetch(
-    `https://driftrock-dev-test.herokuapp.com/${arg}?page=${page}&per_page=100`
+    `https://driftrock-dev-test.herokuapp.com/${option}?page=${page}&per_page=100`
   )
     .then(res => res.json())
     .then(res => {
-      APIres = Array.from(res.data);
-      if (APIres.length !== 100) {
-        console.log("end");
-        return;
-      } else if (APIres.length === 100) {
-        ++page;
-        console.log(page);
-        console.log(APIres[0]);
-        APICall(arg, callback);
+      APIres = res.data;
+      if (APIres.length === 100) {
+        results.push(APIres);
+        page++;
+        APICall(option, callback, page, results);
+      } else if (APIres.length !== 100) {
+        results.push(APIres);
+        callback(results);
       }
     });
 };
 
 const mostSold = result => {
-  result.data.forEach(data => console.log(data.item));
+  result.forEach(a => console.log(a.length));
+  // result.forEach(data => console.log(data.item));
 };
 
 const userTotal = result => {
@@ -34,5 +32,5 @@ const userTotal = result => {
   });
 };
 
-process.argv[2] === "most_sold" ? APICall("purchases", mostSold) : "";
+process.argv[2] === "most_sold" ? APICall("purchases", mostSold, 1, []) : "";
 process.argv[2] === "total_spend" ? APICall("users", userTotal) : "";
