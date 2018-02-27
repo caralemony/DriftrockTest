@@ -21,7 +21,9 @@ const mostLoyal = allSales => {
   let user = Object.keys(salesTally).reduce(function(a, b) {
     return salesTally[a] > salesTally[b] ? a : b;
   });
+  console.log(user);
   return user;
+
   // APICall("users", getUser, 1, [], user);
 };
 

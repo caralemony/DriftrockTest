@@ -18,8 +18,9 @@ const mostSold = allSales => {
   let topSeller = Object.keys(salesTally).reduce(function(a, b) {
     return salesTally[a] > salesTally[b] ? a : b;
   });
-  return topSeller;
+
   console.log(topSeller, salesTally[topSeller], "sold");
+  return topSeller;
 };
 
 module.exports = mostSold;
