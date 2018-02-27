@@ -1,6 +1,6 @@
 const fetch = require("node-fetch");
 
-const APICall = (option, callback, page, results, data) => {
+const APICall = (option, callback, page, results) => {
   fetch(
     `https://driftrock-dev-test.herokuapp.com/${option}?page=${page}&per_page=100`
   )
@@ -10,10 +10,10 @@ const APICall = (option, callback, page, results, data) => {
       if (APIres.length === 100) {
         results.push(APIres);
         page++;
-        APICall(option, callback, page, results, data);
+        APICall(option, callback, page, results);
       } else if (APIres.length !== 100) {
         results.push(APIres);
-        callback(results, data);
+        callback(results);
       }
     });
 };

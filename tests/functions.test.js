@@ -17,7 +17,7 @@ test("mostSold function returns Incredible Silk Bottle", t => {
   t.end();
 });
 
-test("mostSold function returns Incredible Silk Bottle", t => {
+test("mostLoyal function returns user should return RZLF-C7JM-5D3F-FA7L", t => {
   t.equals(
     mostLoyal(sales),
     "RZLF-C7JM-5D3F-FA7L",
