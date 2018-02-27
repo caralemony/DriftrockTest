@@ -1,7 +1,7 @@
 const APICall = require("./APICall");
 
 const mostLoyal = allSales => {
-  let mergedArr = [].concat.apply([], allSales) || allSales;
+  let mergedArr = [].concat.apply([], allSales);
   let soldItems = [];
   let salesTally = {};
 
