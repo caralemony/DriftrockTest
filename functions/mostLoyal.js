@@ -23,14 +23,6 @@ const mostLoyal = allSales => {
   });
   console.log(user);
   return user;
-
-  // APICall("users", getUser, 1, [], user);
 };
-
-// const getUser = (allUsers, user) => {
-//   let topUser = Object.values(allUsers)[id[user]];
-//   return topUser;
-//   console.log(topUser);
-// };
 
 module.exports = mostLoyal;
