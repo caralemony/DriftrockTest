@@ -1,5 +1,6 @@
 const mostSold = allSales => {
   let mergedArr = [].concat.apply([], allSales);
+
   let soldItems = [];
   let salesTally = {};
   mergedArr.forEach(sold => {
@@ -7,18 +8,18 @@ const mostSold = allSales => {
   });
 
   for (var i = 0; i < soldItems.length; i++) {
-    let topSeller = Object.keys(salesTally)[0];
-
-    if (typeof salesTally[soldItems[i]] == "undefined") {
+    if (!salesTally[soldItems[i]]) {
       salesTally[soldItems[i]] = 1;
     } else {
       salesTally[soldItems[i]]++;
-      if (salesTally[soldItems[i]] > Object.values(salesTally)[0]) {
-        topSeller = soldItems[i];
-      }
     }
-    console.log(Object.values(salesTally)[topSeller]);
   }
+
+  let topSeller = Object.keys(salesTally).reduce(function(a, b) {
+    return salesTally[a] > salesTally[b] ? a : b;
+  });
+  return topSeller;
+  console.log(topSeller, salesTally[topSeller], "sold");
 };
 
 module.exports = mostSold;

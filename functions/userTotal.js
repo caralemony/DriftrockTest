@@ -1,3 +1,5 @@
+// Unfinished below!
+
 const userTotal = result => {
   let email = process.argv[3];
   result.data.filter(sales => {
