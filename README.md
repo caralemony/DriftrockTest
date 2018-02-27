@@ -27,5 +27,7 @@ For a future sprint I would return all of the top items or users if there are mo
 
 I would also do an additional API call to return the email address of the user rather than just the user ID.
 
+Lastly I would refactor the mostLoyal and mostSold functions so that there is less repetition.
+
 ## Tests
 To run the tests you can run ```npm run test``` in the terminal
